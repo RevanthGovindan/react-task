@@ -10,7 +10,7 @@
 
 .box div {
   width: 20%;
-  height: 300px;
+  height: auto;
   background: aqua;
 }
 .item{
