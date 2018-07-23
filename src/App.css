@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow-y: scroll
+  overflow: hidden;
   
 }
 .box div {
@@ -22,12 +22,19 @@
 #inpt{
   border: none;
 }
-.titlebar{}
+.tasks{
+  white-space: nowrap;
+}
 li{
   list-style-type: none;
-  width: 100%;
 }
-
 .close-icon {
+  cursor: pointer;
+}
+.r180{
+  font-size: 25px;
+  font-weight: 900;
+  color: #666;
+  position: relative;
   cursor: pointer;
 }

@@ -56,7 +56,7 @@ class List extends Component {
         <div className="box">
           {
             this.state.data.map((data, titleIndex) =>
-              <div className="item"> 
+              <div className="item">
                 <div className="datas">
                   <div className="titlebar">
                     <input value={data.title} name="title" onChange={this.handleChange.bind(this, titleIndex)} id="inpt" />
@@ -64,11 +64,12 @@ class List extends Component {
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  {data.items.map((item, taskIndex) => <li key={item}>
-                    <input type="checkbox" value={item} />{item}<button type="button" className="close" aria-label="Close" onClick={this.removeTask.bind(this, titleIndex, taskIndex)}>
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </li>)}
+                  <div className="tasks">
+                    {data.items.map((item, taskIndex) => <li key={item} >
+                      <input type="checkbox" value={item} />{item}
+                        <span class="r180" aria-hidden="true" onClick={this.removeTask.bind(this, titleIndex, taskIndex)}>&times;</span>
+                    </li>)}
+                  </div>
                   <button className="btn btn-danger" onClick={this.addTask.bind(this, titleIndex)}>Add</button>
                 </div>
               </div>
