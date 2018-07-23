@@ -2,12 +2,14 @@
   text-align: center;
 }
 .box {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow-y: scroll
+  
 }
-
 .box div {
   width: 20%;
   height: auto;
@@ -19,4 +21,13 @@
 }
 #inpt{
   border: none;
+}
+.titlebar{}
+li{
+  list-style-type: none;
+  width: 100%;
+}
+
+.close-icon {
+  cursor: pointer;
 }
