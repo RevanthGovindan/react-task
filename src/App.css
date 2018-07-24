@@ -21,6 +21,7 @@
 }
 #inpt{
   border: none;
+  background: aqua;
 }
 .tasks{
   white-space: nowrap;
@@ -37,4 +38,19 @@ li{
   color: #666;
   position: relative;
   cursor: pointer;
+}
+.titlebar{
+  white-space: nowrap;
+}
+.closetask{
+  padding-left:50px;
+}
+.minimize{
+  padding-left:100px;
+  padding-right: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 900;
+  color: #666;
+  position: relative;
 }

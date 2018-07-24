@@ -15,8 +15,7 @@ class App extends Component {
 class List extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [{ title: "title1", items: ['abc', 'bcd', 'cde'] }, { title: "title2", items: ['abc', 'bcd', 'cde'] }, { title: "title3", items: ['abc', 'bcd', 'cde'] }] }
-    this.handleChange = this.handleChange.bind(this);
+    this.state = { data: JSON.parse(localStorage.getItem('data')) }
   }
   handleChange(titleIndex, event) {
     const data = this.state.data;
@@ -24,30 +23,43 @@ class List extends Component {
     if (name === "title") {
       data[titleIndex].title = event.target.value;
     }
-    this.setState({ data })
+    this.setState({ data });
+    localStorage.setItem('data',JSON.stringify(this.state.data))
     event.preventDefault();
   }
   removeTask(titleIndex, taskIndex) {
     const data1 = this.state.data[titleIndex].items;
     data1.splice(taskIndex, 1);
     this.setState({ data1 })
+    localStorage.setItem('data',JSON.stringify(this.state.data))
   }
   addTask(titleIndex) {
     const data = this.state.data;
     const number = data[titleIndex].items.length + 1;
     data[titleIndex].items.push('new' + number);
     this.setState({ data });
+    localStorage.setItem('data',JSON.stringify(this.state.data))
   }
   addTitle() {
     const data = this.state.data;
     const body = { title: 'title', items: ['new'] }
     data.push(body);
     this.setState({ data });
+    localStorage.setItem('data',JSON.stringify(this.state.data))
   }
   removeTitle(titleIndex) {
     const data1 = this.state.data;
     data1.splice(titleIndex, 1);
     this.setState({ data1 });
+    localStorage.setItem('data',JSON.stringify(this.state.data))
+  }
+  handleTask(titleIndex, taskIndex, event) {
+    const data1 = this.state.data[titleIndex].items;
+    const value = event.target.value;
+    data1[taskIndex] = value;
+    this.setState({ data1 });
+    event.preventDefault();
+    localStorage.setItem('data',JSON.stringify(this.state.data))
   }
   render() {
     return (
@@ -58,17 +70,20 @@ class List extends Component {
             this.state.data.map((data, titleIndex) =>
               <div className="item">
                 <div className="datas">
-                  <div className="titlebar">
-                    <input value={data.title} name="title" onChange={this.handleChange.bind(this, titleIndex)} id="inpt" />
-                    <button type="button" className="close cls" aria-label="Close" onClick={this.removeTitle.bind(this, titleIndex)}>
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                  <div className="titlebar"><li>
+                    <input className="" value={data.title} name="title" onChange={this.handleChange.bind(this, titleIndex)} id="inpt" />
+                    <span className="minimize" aria-hieedn="true" onClick="">-</span>
+                    <span className="r180 closetitle" aria-hidden="true" onClick={this.removeTitle.bind(this, titleIndex)}>x</span>
+                  </li>
                   </div>
                   <div className="tasks">
-                    {data.items.map((item, taskIndex) => <li key={item} >
-                      <input type="checkbox" value={item} />{item}
-                        <span class="r180" aria-hidden="true" onClick={this.removeTask.bind(this, titleIndex, taskIndex)}>&times;</span>
-                    </li>)}
+                    {
+                      data.items.map((item, taskIndex) => <li>
+                        <input type="checkbox" value={item} />
+                        <input className="" value={item} name="items" onChange={this.handleTask.bind(this, titleIndex, taskIndex)} id="inpt" />
+                        <span className="r180 closetask" aria-hidden="true" onClick={this.removeTask.bind(this, titleIndex, taskIndex)}>x</span>
+                      </li>)
+                    }
                   </div>
                   <button className="btn btn-danger" onClick={this.addTask.bind(this, titleIndex)}>Add</button>
                 </div>
