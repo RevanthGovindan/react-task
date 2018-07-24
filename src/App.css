@@ -8,7 +8,8 @@
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  
+  font-family: 'Signika';
+  font-size:21px;
 }
 .box div {
   width: 20%;
@@ -33,7 +34,7 @@ li{
   cursor: pointer;
 }
 .r180{
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 900;
   color: #666;
   position: relative;
@@ -45,11 +46,19 @@ li{
 .closetask{
   padding-left:50px;
 }
-.minimize{
-  padding-left:100px;
+.minimize{ 
   padding-right: 10px;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #666;
+  position: relative;
+}
+.maximise{
+  padding-left:55px;
+  padding-right: 10px;
+  cursor: pointer;
+  font-size: 30px;
   font-weight: 900;
   color: #666;
   position: relative;

@@ -24,34 +24,34 @@ class List extends Component {
       data[titleIndex].title = event.target.value;
     }
     this.setState({ data });
-    localStorage.setItem('data',JSON.stringify(this.state.data))
+    localStorage.setItem('data', JSON.stringify(this.state.data))
     event.preventDefault();
   }
   removeTask(titleIndex, taskIndex) {
     const data1 = this.state.data[titleIndex].items;
     data1.splice(taskIndex, 1);
     this.setState({ data1 })
-    localStorage.setItem('data',JSON.stringify(this.state.data))
+    localStorage.setItem('data', JSON.stringify(this.state.data))
   }
   addTask(titleIndex) {
     const data = this.state.data;
     const number = data[titleIndex].items.length + 1;
     data[titleIndex].items.push('new' + number);
     this.setState({ data });
-    localStorage.setItem('data',JSON.stringify(this.state.data))
+    localStorage.setItem('data', JSON.stringify(this.state.data))
   }
   addTitle() {
     const data = this.state.data;
     const body = { title: 'title', items: ['new'] }
     data.push(body);
     this.setState({ data });
-    localStorage.setItem('data',JSON.stringify(this.state.data))
+    localStorage.setItem('data', JSON.stringify(this.state.data))
   }
   removeTitle(titleIndex) {
     const data1 = this.state.data;
     data1.splice(titleIndex, 1);
     this.setState({ data1 });
-    localStorage.setItem('data',JSON.stringify(this.state.data))
+    localStorage.setItem('data', JSON.stringify(this.state.data))
   }
   handleTask(titleIndex, taskIndex, event) {
     const data1 = this.state.data[titleIndex].items;
@@ -59,29 +59,38 @@ class List extends Component {
     data1[taskIndex] = value;
     this.setState({ data1 });
     event.preventDefault();
-    localStorage.setItem('data',JSON.stringify(this.state.data))
+    localStorage.setItem('data', JSON.stringify(this.state.data))
+  }
+  minimiseTask(titleIndex) {
+    var x = document.getElementById("myDIV").querySelectorAll(".tasks")[titleIndex];   
+      x.style.display = "none";   
+  }
+  maximiseTask(titleIndex){
+    var x = document.getElementById("myDIV").querySelectorAll(".tasks")[titleIndex];   
+      x.style.display = "block";
   }
   render() {
     return (
       <div>
-        <button className="btn btn-primary" onClick={this.addTitle.bind(this)}>Add New</button>
-        <div className="box">
+        <button className="btn btn-primary" data-toggle="tooltip" title="Add Check List" onClick={this.addTitle.bind(this)}>Add New</button>
+        <div className="box" id="myDIV">
           {
             this.state.data.map((data, titleIndex) =>
               <div className="item">
                 <div className="datas">
                   <div className="titlebar"><li>
                     <input className="" value={data.title} name="title" onChange={this.handleChange.bind(this, titleIndex)} id="inpt" />
-                    <span className="minimize" aria-hieedn="true" onClick="">-</span>
-                    <span className="r180 closetitle" aria-hidden="true" onClick={this.removeTitle.bind(this, titleIndex)}>x</span>
+                    <span className="maximise" aria-hidden="true" onClick={this.maximiseTask.bind(this, titleIndex)} data-toggle="tooltip" title="Maximize">+</span>
+                    <span className="minimize" aria-hidden="true" onClick={this.minimiseTask.bind(this, titleIndex)} data-toggle="tooltip" title="Minimize">-</span>
+                    <span className="r180 closetitle" aria-hidden="true" onClick={this.removeTitle.bind(this, titleIndex)} data-toggle="tooltip" title="Remove Check List">x</span>
                   </li>
                   </div>
-                  <div className="tasks">
+                  <div className="tasks" >
                     {
                       data.items.map((item, taskIndex) => <li>
                         <input type="checkbox" value={item} />
                         <input className="" value={item} name="items" onChange={this.handleTask.bind(this, titleIndex, taskIndex)} id="inpt" />
-                        <span className="r180 closetask" aria-hidden="true" onClick={this.removeTask.bind(this, titleIndex, taskIndex)}>x</span>
+                        <span className="r180 closetask" aria-hidden="true" onClick={this.removeTask.bind(this, titleIndex, taskIndex)} data-toggle="tooltip" title="Remove Task">x</span>
                       </li>)
                     }
                   </div>
