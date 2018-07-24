@@ -4,7 +4,7 @@ import Task from './Task.js';
 class CheckBox extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: this.props.data }
+        this.state = { data: this.props.data,isHidden:true,indexportion:[] }
     }
     handleChange(titleIndex, event) {
         const data = this.state.data;
@@ -25,7 +25,7 @@ class CheckBox extends Component {
     }
     addTitle() {
         const data = this.state.data;
-        const body = { title: 'title', items: ['new'] }
+        const body = { title: 'title', items: ['new'],display:true }
         data.push(body);
         this.setState({ data });
         localStorage.setItem('data', JSON.stringify(this.state.data))
@@ -37,12 +37,14 @@ class CheckBox extends Component {
         localStorage.setItem('data', JSON.stringify(this.state.data))
     }
     minimiseTask(titleIndex) {
-        var x = document.getElementById("myDIV").querySelectorAll(".tasks")[titleIndex];
-        x.style.display = "none";
+        const data1 = this.state.data;
+        data1[titleIndex].display=false;
+        this.setState({data1});
     }
     maximiseTask(titleIndex) {
-        var x = document.getElementById("myDIV").querySelectorAll(".tasks")[titleIndex];
-        x.style.display = "block";
+        const data1 = this.state.data;
+        data1[titleIndex].display=true;
+        this.setState({data1});
     }
     render() {
         return (
@@ -51,7 +53,7 @@ class CheckBox extends Component {
                 <div className="box" id="myDIV">
                     {
                         this.state.data.map((data, titleIndex) =>
-                            <div className="item">
+                            <div className="item" key={titleIndex}>
                                 <div className="datas">
                                     <div className="titlebar"><li>
                                         <input className="" value={data.title} name="title" onChange={this.handleChange.bind(this, titleIndex)} id="inpt" />
@@ -60,8 +62,11 @@ class CheckBox extends Component {
                                         <span className="r180 closetitle" aria-hidden="true" onClick={this.removeTitle.bind(this, titleIndex)} data-toggle="tooltip" title="Remove Check List">x</span>
                                     </li>
                                     </div>
-                                    <div className="tasks" >
-                                        <Task items={data.items} titleIndex={titleIndex} data={this.state.data} />
+                                    <div className="innerbox">
+                                        <div className="tasks" >
+                                         
+                                         {data.display?<Task items={data.items} titleIndex={titleIndex} data={this.state.data}/>:""}                                 
+                                        </div>
                                     </div>
                                     <button className="btn btn-danger" onClick={this.addTask.bind(this, titleIndex)}>Add</button>
                                 </div>

@@ -1,21 +1,25 @@
   .box {
     width: 100%;
-    display: flex;
+   
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     overflow: hidden;
     font-family: 'Signika';
     font-size:21px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
   }
   .box div {
-    width: 20%;
-    height: auto;
+    width: 100%;
     background: aqua;
   }
   .item{
     padding:10px; 
     margin:10px;
+    height: 400px;
+    
   }
   #inpt{
     border: none;
@@ -23,6 +27,8 @@
   }
   .tasks{
     white-space: nowrap;
+    overflow-y: scroll;
+    height:300px;
   }
   li{
     list-style-type: none;
@@ -52,7 +58,7 @@
     position: relative;
   }
   .maximise{
-    padding-left:55px;
+    padding-left:50px;
     padding-right: 10px;
     cursor: pointer;
     font-size: 30px;

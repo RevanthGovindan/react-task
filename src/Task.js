@@ -23,7 +23,7 @@ class Task extends Component {
         return (
             <div>
                 {
-                    this.state.items.map((item, taskIndex) => <li>
+                    this.state.items.map((item, taskIndex) => <li key={taskIndex}>
                         <input type="checkbox" value={item} />
                         <input className="" value={item} name="items" onChange={this.handleTask.bind(this, this.state.titleIndex, taskIndex)} id="inpt" />
                         <span className="r180 closetask" aria-hidden="true" onClick={this.removeTask.bind(this, this.state.titleIndex, taskIndex)} data-toggle="tooltip" title="Remove Task">x</span>
