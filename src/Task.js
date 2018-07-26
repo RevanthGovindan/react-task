@@ -3,7 +3,7 @@ import './CheckBox.css';
 class Task extends Component {
     constructor(props) {
         super(props)
-        this.state={items:this.props.items,titleIndex:this.props.titleIndex,data:this.props.data}
+        this.state = { items: this.props.items, titleIndex: this.props.titleIndex, data: this.props.data }
     }
     handleTask(titleIndex, taskIndex, event) {
         const data1 = this.state.data[titleIndex].items;
@@ -21,14 +21,14 @@ class Task extends Component {
     }
     render() {
         return (
-            <div>
-                {
-                    this.state.items.map((item, taskIndex) => <li key={taskIndex}>
-                        <input type="checkbox" value={item} />
-                        <input className="" value={item} name="items" onChange={this.handleTask.bind(this, this.state.titleIndex, taskIndex)} id="inpt" />
-                        <span className="r180 closetask" aria-hidden="true" onClick={this.removeTask.bind(this, this.state.titleIndex, taskIndex)} data-toggle="tooltip" title="Remove Task">x</span>
-                    </li>)
-                }
+            <div>{
+
+                this.state.data[this.state.titleIndex].items.map((item, taskIndex) => <li key={taskIndex}>
+                    <input type="checkbox" value={item} />
+                    <input className="" value={item} name="items" onChange={this.handleTask.bind(this, this.state.titleIndex, taskIndex)} id="inpt" />
+                    <span className="r180 closetask" aria-hidden="true" onClick={this.removeTask.bind(this, this.state.titleIndex, taskIndex)} data-toggle="tooltip" title="Remove Task">x</span>
+                </li>)
+            }
             </div>
         );
     }

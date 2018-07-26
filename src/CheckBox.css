@@ -1,6 +1,5 @@
   .box {
-    width: 100%;
-   
+    width: 100%;   
     align-items: center;
     justify-content: center;
     flex-direction: row;
@@ -45,10 +44,13 @@
   }
   .titlebar{
     white-space: nowrap;
+    background: blue;
+    border: 5px solid rgb(245, 106, 13);
+    border-left: hidden;
+    border-top: hidden;
+    border-right: hidden;
   }
-  .closetask{
-    padding-left:50px;
-  }
+  
   .minimize{ 
     padding-right: 10px;
     cursor: pointer;
@@ -66,3 +68,4 @@
     color: #666;
     position: relative;
   }
+  
