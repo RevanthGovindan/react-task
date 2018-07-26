@@ -2,23 +2,19 @@
     width: 100%;   
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    overflow: hidden;
     font-family: 'Signika';
     font-size:21px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  grid-gap: 25px;
+    display: flex;
+    flex-wrap: wrap;  
   }
   .box div {
     width: 100%;
-    background: aqua;
   }
-  .item{
-    padding:10px; 
-    margin:10px;
-    height: 400px;
-    
+  .gap{
+    padding: 40px;
+  }
+  .datas{
+    background: aqua;
   }
   #inpt{
     border: none;
@@ -44,11 +40,12 @@
   }
   .titlebar{
     white-space: nowrap;
-    background: blue;
+    background: aqua;
     border: 5px solid rgb(245, 106, 13);
     border-left: hidden;
     border-top: hidden;
     border-right: hidden;
+    width: fit-content;
   }
   
   .minimize{ 
@@ -60,8 +57,8 @@
     position: relative;
   }
   .maximise{
-    padding-left:50px;
-    padding-right: 10px;
+    padding-left: 20%;
+    display: inline;
     cursor: pointer;
     font-size: 30px;
     font-weight: 900;

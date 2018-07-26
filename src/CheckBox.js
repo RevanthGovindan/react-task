@@ -24,20 +24,19 @@ class CheckBox extends Component {
         localStorage.setItem('data', JSON.stringify(this.state.data))
     }
     childChange(newState) {
-
-        this.setState({ data: newState });
-        
+        this.setState({ data: newState });        
     }
     render() {
         return (
             <div>
                 <button className="btn btn-primary btn-lg" data-toggle="tooltip" title="Add Check List" onClick={this.addTitle.bind(this)}>Add New</button>
-                <div className="box" id="myDIV">
+                <div className="container-fluid box" id="myDIV">
+                    <div className="row">
                     {
                         this.state.data.map((data, titleIndex) =>
-                            <div className="item" key={titleIndex}>
+                            <div className="col-xs-12 col-md-6 col-sm-12 col-lg-4 gap" key={titleIndex}>
                                 <div className="datas">
-                                    <Title data={this.state.data} titleIndex={titleIndex} title={this.state.data[titleIndex].title} callBack={(newState) => this.childChange(newState)} />
+                                    <Title data={this.state.data} titleIndex={titleIndex} title={data.title} callBack={(newState) => this.childChange(newState)} />
                                     <div className="innerbox">
                                         <div className="tasks" >
                                             {data.display ? <Task items={data.items} titleIndex={titleIndex} data={this.state.data} /> : "Hidden"}
@@ -49,6 +48,7 @@ class CheckBox extends Component {
                             </div>
                         )
                     }
+                    </div>
                 </div>
             </div>
         );

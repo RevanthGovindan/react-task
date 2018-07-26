@@ -32,10 +32,8 @@ class Title extends Component {
     }
     render() {
         return (
-            <div className="titlebar">{
-               
-            }
-                <li>
+            <div className="titlebar">
+                <li className="icns">
                     <input className="" value={this.props.title} name="title" onChange={this.handleChange.bind(this, this.state.titleIndex)} id="inpt" />
                     <span className="maximise" aria-hidden="true" onClick={this.maximiseTask.bind(this, this.state.titleIndex)} data-toggle="tooltip" title="Maximize">+</span>
                     <span className="minimize" aria-hidden="true" onClick={this.minimiseTask.bind(this, this.state.titleIndex)} data-toggle="tooltip" title="Minimize">-</span>
